@@ -1,57 +1,156 @@
 def game_hash
-  game_hash = {
-    :home => {
+    game_hash = {:home => {
       :team_name => "Brooklyn Nets",
-      :colors => ["Black","White"],
+      :colors => ["Black", "White"],
       :players => {
-          :name => [ "Alan Anderson", "Reggie Evans", "Brook Lopez", "Mason Plumlee", "Jason Terry"],
-          :number =>    [0, 30,11,1,31],
-          :shoe =>      [16,14,17,19,15],
-          :points =>    [22,12,17,26,19],
-          :rebounds =>  [12,12,19,12,2],
-          :assists =>   [12,12,10,6, 2],
-          :steals =>    [3, 12,3, 3, 4],
-          :blocks =>    [1, 12,1, 8,11],
-          :slam_dunks =>[1, 7,15, 5, 1]
+        "Alan Anderson" => {
+          :number => 0,
+          :shoe => 16,
+          :points => 22,
+          :rebounds => 12,
+          :assists => 12,
+          :steals => 3,
+          :blocks => 1,
+          :slam_dunks => 1
+        },
+        "Reggie Evans" => {
+          :number => 30,
+          :shoe => 14,
+          :points => 12,
+          :rebounds => 12,
+          :assists => 12,
+          :steals => 12,
+          :blocks => 12,
+          :slam_dunks => 7
+        },
+        "Brook Lopez" => {
+          :number => 11,
+          :shoe => 17,
+          :points => 17,
+          :rebounds => 19,
+          :assists => 10,
+          :steals => 3,
+          :blocks => 1,
+          :slam_dunks => 15
+        },
+        "Mason Plumlee" => {
+          :number => 1,
+          :shoe => 19,
+          :points => 26,
+          :rebounds => 12,
+          :assists => 6,
+          :steals => 3,
+          :blocks => 8,
+          :slam_dunks => 5
+        },
+        "Jason Terry" => {
+          :number => 31,
+          :shoe => 15,
+          :points => 19,
+          :rebounds => 2,
+          :assists => 2,
+          :steals => 4,
+          :blocks => 11,
+          :slam_dunks => 1
+          }
         }
-        
-def player_stats(player_name)
-  stat_hash = {}
-  i = 0
-  while i < game_hash[:home][:players][:name].length
-    if player_name == game_hash[:home][:players][:name][i]
-      stat_hash = {
-        :number => game_hash[:home][:players][:number][i],
-        :shoe => game_hash[:home][:players][:shoe][i],
-        :points => game_hash[:home][:players][:points][i],
-        :rebounds => game_hash[:home][:players][:rebounds][i],
-        :assists => game_hash[:home][:players][:assists][i],
-        :steals => game_hash[:home][:players][:steals][i],
-        :blocks => game_hash[:home][:players][:blocks][i],
-        :slam_dunks => game_hash[:home][:players][:slam_dunks][i]
+      },
+      :away => {
+       :team_name => "Charlotte Hornets",
+        :colors => ["Turquoise", "Purple"],
+        :players => {
+          "Jeff Adrien" => {
+            :number => 4,
+            :shoe => 18,
+            :points => 10,
+            :rebounds => 1,
+            :assists => 1,
+            :steals => 2,
+            :blocks => 7,
+            :slam_dunks => 2
+          },
+          "Bismak Biyombo" => {
+            :number => 0,
+            :shoe => 16,
+            :points => 12,
+            :rebounds => 4,
+            :assists => 7,
+            :steals => 7,
+            :blocks => 15,
+            :slam_dunks => 10
+          },
+          "DeSagna Diop" => {
+            :number => 2,
+            :shoe => 14,
+            :points => 24,
+            :rebounds => 12,
+            :assists => 12,
+            :steals => 4,
+            :blocks => 5,
+            :slam_dunks => 5
+          },
+          "Ben Gordon" => {
+            :number => 8,
+            :shoe => 15,
+            :points => 33,
+            :rebounds => 3,
+            :assists => 2,
+            :steals => 1,
+            :blocks => 1,
+            :slam_dunks => 0
+          },
+          "Brendan Haywood" => {
+            :number => 33,
+            :shoe => 15,
+            :points => 6,
+            :rebounds => 12,
+            :assists => 12,
+            :steals => 22,
+            :blocks => 5,
+            :slam_dunks => 12
+          }
+        }
       }
-    elsif player_name == game_hash[:away][:players][:name][i]
-      stat_hash = {
-        :number => game_hash[:away][:players][:number][i],
-        :shoe => game_hash[:away][:players][:shoe][i],
-        :points => game_hash[:away][:players][:points][i],
-        :rebounds => game_hash[:away][:players][:rebounds][i],
-        :assists => game_hash[:away][:players][:assists][i],
-        :steals => game_hash[:away][:players][:steals][i],
-        :blocks => game_hash[:away][:players][:blocks][i],
-        :slam_dunks => game_hash[:away][:players][:slam_dunks][i]
-      }
-    end
-    i += 1
+    }
   end
-  stat_hash
-end
-
-
-
-
-
-
-
-
+  
+  # *********YOU GOT THIS***********
+  
+  def num_points_scored(players)
+    game_hash.each do |location, team_data|
+        team_data[:players].each do |name, data|
+        if name == players
+          return data[:points]
+        end
+      end
+      end
+  end
+  
+  def shoe_size(players)
+    game_hash.each do |location, team_data|
+      team_data[:players].each do |name, data|
+        if name == players
+          return data[:shoe]
+        end
+      end
+    end
+  end
+  
+  def team_colors(team_name)
+    game_hash.each do |location, team_data|
+      if team_data[:team_name] == team_name
+        return team_data[:colors]
+      end
+    end
+  end
+  
+  def team_names
+    game_hash.map do |location, team_data|
+      team_data[:team_name]
+    end
+  end
+  
+  def player_numbers(team_name)
+    game_hash.each do |location, team_data|
+      
 
