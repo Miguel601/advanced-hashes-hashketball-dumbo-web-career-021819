@@ -152,5 +152,8 @@ def game_hash
   
   def player_numbers(team_name)
     game_hash.each do |location, team_data|
+      team_data[:number] == team_name
+    end
+  end
       
 
